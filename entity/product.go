@@ -17,3 +17,4 @@ func (s *Product) Validate() error {
 	_, err := govalidator.ValidateStruct(s)
 	return err
 }
+
