@@ -15,7 +15,7 @@ func Test1(t *testing.T) {
 		approved := entity.Product{
 			Title:        "hee5",
 			Price:       455,
-			Code:  "BK123454",
+			Code:  "BK123456",
 		}
 
 		ok, err := govalidator.ValidateStruct(approved)
@@ -59,4 +59,20 @@ func Test3(t *testing.T) {
 	})
 }
 
+func Test4(t *testing.T) {
+	g := NewGomegaWithT(t)
+
+	t.Run("test", func(t *testing.T) {
+		approved := entity.Product{
+			Title:        "heee",
+			Price:       455,
+			Code:  "BK11",
+		}
+
+		ok, err := govalidator.ValidateStruct(approved)
+
+		g.Expect(ok).To(BeFalse())
+		g.Expect(err.Error()).To(Equal("Code is in BK and 6 Number"))
+	})
+}
 
