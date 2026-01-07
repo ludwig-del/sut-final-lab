@@ -42,4 +42,21 @@ func Test2(t *testing.T) {
 	})
 }
 
+func Test3(t *testing.T) {
+	g := NewGomegaWithT(t)
+
+	t.Run("test", func(t *testing.T) {
+		approved := entity.Product{
+			Title:        "heee",
+			Price:       45,
+			Code:  "B6612122",
+		}
+
+		ok, err := govalidator.ValidateStruct(approved)
+
+		g.Expect(ok).To(BeFalse())
+		g.Expect(err.Error()).To(Equal("Price must be greater than 0"))
+	})
+}
+
 
